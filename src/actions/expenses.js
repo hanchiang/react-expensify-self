@@ -1,8 +1,18 @@
-import { ADD_EXPENSE, EDIT_EXPENSE, REMOVE_EXPENSE } from '../constants/actionTypes';
+import {
+  ADD_EXPENSE, START_ADD_EXPENSE, 
+  EDIT_EXPENSE, START_EDIT_EXPENSE,
+  REMOVE_EXPENSE, START_REMOVE_EXPENSE,
+  SET_EXPENSE, START_SET_EXPENSE
+} from '../constants/actionTypes';
 import uuid from 'uuid/v4';
 
 const addExpense = (expense) => ({
   type: ADD_EXPENSE,
+  expense
+});
+
+const startAddExpense = (expense) => ({
+  type: START_ADD_EXPENSE,
   expense
 });
 
@@ -17,4 +27,13 @@ const removeExpense = (id) => ({
   id
 });
 
-export { addExpense, editExpense, removeExpense };
+const setExpense = (expenses) => ({
+  type: SET_EXPENSE,
+  expenses
+});
+
+const startSetExpense = () => ({
+  type: START_SET_EXPENSE
+});
+
+export { addExpense, startAddExpense, editExpense, removeExpense, setExpense, startSetExpense };

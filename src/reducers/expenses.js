@@ -1,4 +1,4 @@
-import { ADD_EXPENSE, EDIT_EXPENSE, REMOVE_EXPENSE } from '../constants/actionTypes';
+import { ADD_EXPENSE, EDIT_EXPENSE, REMOVE_EXPENSE, SET_EXPENSE } from '../constants/actionTypes';
 
 /*
 expense = {
@@ -28,6 +28,8 @@ function expensesReducer(state = initialState, action) {
       });
     case REMOVE_EXPENSE:
       return state.filter(expense => expense.id !== action.id);
+    case SET_EXPENSE:
+      return action.expenses
     default:
       return state;
   }

@@ -1,4 +1,3 @@
-// Takes all the named exports and name is as 'firebase'
 import * as firebase from 'firebase';
 
 const config = {
@@ -13,7 +12,8 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
+const auth = firebase.auth();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 
-export { firebase, googleAuthProvider, database as default };
+export { firebase as default, googleAuthProvider, database, auth };

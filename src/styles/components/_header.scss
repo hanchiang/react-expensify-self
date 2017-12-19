@@ -2,14 +2,14 @@
   background: $dark-blue;
 }
 
-.header__content {
+.header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: $s-size 0;
 }
 
-.header__title {
+.header-title {
   color: white;
   text-decoration: none;
   h1 {

@@ -22,9 +22,9 @@ function AppRouter() {
                     <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                     */}
                     <Route path="/" component={LoginPage} exact/>
-                    <Route path="/dashboard" component={ExpenseDashboardPage} />
-                    <Route path="/create" component={AddExpensePage} />
-                    <Route path="/edit/:id" component={EditExpensePage} />
+                    <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
+                    <PrivateRoute path="/create" component={AddExpensePage} />
+                    <PrivateRoute path="/edit/:id" component={EditExpensePage} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </div>
