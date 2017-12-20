@@ -4,36 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { renderApp } from '../app';
-import { addExpense, setExpense } from '../actions/expenses';
+import { addExpense, setExpense, editExpense, removeExpense } from '../actions/expenses';
+import { addToDatabase, fetchFromDatabase, editToDataBase, removeFromDatabase } from '../api/expenses';
 
-const addToDatabase = (expense, path) => {
-  return database.ref(path).push(expense).then(ref => {
-    return {
-      id: ref.key,
-      ...expense
-    };
-  });
-}
-
-const fetchFromDatabase = (path) => {
-  let expenses = [];
-
-  return database.ref(path).once('value').then(snapshot => {
-    let expenses = [];
-    snapshot.forEach(childSnapshot => {
-      expenses.push({
-        id: childSnapshot.key,
-        ...childSnapshot.val()
-      });
-    });
-    return expenses;
-  });
-}
-
-
-const editToDataBase = (id, updates) => {
-
-}
 
 function* handleAddExpense(action) {
   const { expense } = action;
@@ -41,12 +14,10 @@ function* handleAddExpense(action) {
   const uid = state.auth.uid;
 
   const path = `users/${uid}/expenses`;
-  const addedExpense = yield call(addToDatabase, expense, path);
+  const addedExpense = yield call(addToDatabase, path, expense);
   yield put(addExpense(addedExpense));
   
 }
-
-
 
 function* handleSetExpense(action) {
   const state = yield select();
@@ -58,4 +29,22 @@ function* handleSetExpense(action) {
   yield renderApp();
 }
 
-export { handleAddExpense, handleSetExpense };
+function* handleEditExpense(action) {
+  const state = yield select();
+  const uid = state.auth.uid;
+  const { updates, id } = action;
+  const path = `users/${uid}/expenses/${id}`;
+  yield call(editToDataBase, path, updates);
+  yield put(editExpense(id, updates));
+}
+
+function* handleRemoveExpense(action) {
+  const state = yield select();
+  const uid = state.auth.uid;
+  const { id } = action;
+  const path = `users/${uid}/expenses/${id}`;
+  yield call(removeFromDatabase, path);
+  yield put(removeExpense(id));
+}
+
+export { handleAddExpense, handleSetExpense, handleEditExpense, handleRemoveExpense };
