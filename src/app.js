@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-dates/initialize';
 import { Provider } from 'react-redux';
 import moment from 'moment';
 
@@ -13,9 +14,9 @@ import { addExpense, editExpense, removeExpense, startSetExpense } from './actio
 import { setFilterText, sortByDate, sortByAmount, setStartDate, setEndDate } from './actions/filters';
 
 import 'normalize.css/normalize.css';
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
+import 'react-dates/lib/css/_datepicker.css';
+
 
 export const jsx = (
   <Provider store={store}>

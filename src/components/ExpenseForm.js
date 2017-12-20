@@ -47,6 +47,10 @@ class ExpenseForm extends React.Component {
     }
   }
 
+  onRemove = (event) => {
+    this.props.onRemove(this.props.expense.id);
+  }
+
   render() {
     const { error } = this.state;
     return (
@@ -65,8 +69,9 @@ class ExpenseForm extends React.Component {
           />
           <textarea className="textarea" value={this.state.note} onChange={this.onNoteChange} placeholder="Add a note for your expense (optional)"></textarea>
 
-          <div>
-            <button className="button">Add Expense</button>
+          <div className="button-group">
+            <button className="button">Save Expense</button>
+            { this.props.isEdit && <button onClick={this.onRemove} className="button button-remove">Remove expense</button> }
           </div>
         </form>
     );

@@ -8,16 +8,16 @@ function ExpenseList(props) {
   const { expenses } = props;
 
   return (
-    <div className="content-container">
+    <div>
       <div className="list-header">
         <div>Expenses</div>
-        <div>Amount</div>
+        <div className="show-for-desktop">Amount</div>
       </div>
 
       <div className="list-body">
         {
-          expenses.length === 0 ?
-          <div className="list-item list-item-message">No expenses</div> :
+          expenses.length === 0 ? <div className="list-item list-item-message">No expenses</div>
+          :
           expenses.map(expense =>
             <ExpenseListItem key={expense.id} expense={expense} />
           )

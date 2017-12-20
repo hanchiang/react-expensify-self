@@ -8,17 +8,17 @@ import ExpensesSummary from './ExpensesSummary';
 function ExpenseDashboardPage() {
     return (
         <div>
-            <h1>Expense dashboard page</h1>
-
             <div className="page-header">
                 <div className="content-container">
                     <ExpensesSummary />
-                    <NavLink className="button" to="/create">Add expense</NavLink>
+                    <NavLink className="button page-header-actions" to="/create">Add Expense</NavLink>
                 </div>
             </div>
 
-            <ExpenseListFilters />
-            <ExpenseList />
+            <div className="content-container">
+                <ExpenseListFilters />
+                <ExpenseList />
+            </div>
             
         </div>
     )

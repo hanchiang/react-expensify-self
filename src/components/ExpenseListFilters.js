@@ -23,7 +23,7 @@ class ExpenseListFilters extends React.Component {
 
   render () {
     return (
-      <div className="content-container">
+      <div>
         <div className="input-group">
           <div className="input-group-item">
             <input type="text" className="text-input" onChange={this.handleTextFilterChange} placeholder="Search expense" />

@@ -44,17 +44,17 @@
   }
 }
 
-.list-item__title {
+.list-item-title {
   margin: 0;
   word-break: break-all;
 }
 
-.list-item__sub-title {
+.list-item-sub-title {
   color: $grey;
   font-size: $font-size-small;
 }
 
-.list-item__data {
+.list-item-data {
   margin: $s-size 0 0 0;
   @media (min-width: $desktop-breakpoint) {
     margin: 0;

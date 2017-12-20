@@ -12,7 +12,7 @@ function EditExpensePage(props) {
     props.history.push('/dashboard');
   };
 
-  const onClick = (event) => {
+  const onRemove = (id) => {
     props.onRemove(expense.id);
     props.history.push('/dashboard');
   }
@@ -21,13 +21,12 @@ function EditExpensePage(props) {
     <div>
       <div className="page-header">
         <div className="content-container">
-          Edit Expense
+          <h1 className="page-header-title">Edit Expense</h1>
         </div>
       </div>
       
       <div className="content-container">
-        <ExpenseForm expense={expense} onSubmit={onSubmit} />
-        <button onClick={onClick} className="button button-remove">Remove expense</button>
+          <ExpenseForm expense={expense} onSubmit={onSubmit} isEdit={true} onRemove={onRemove} />
       </div>
       
     </div>

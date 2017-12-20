@@ -15,11 +15,15 @@
 
 .SingleDatePickerInput.SingleDatePickerInput_1.SingleDatePickerInput__withBorder.SingleDatePickerInput__withBorder_2 {
   width: 100%;
-  border: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
   .DateInput.DateInput_1 {
     width: 100%;
     input {
-      border: 1px solid #cacccd;
+      border-top: 1px solid #cacccd;
+      border-right: 1px solid #cacccd;
+      border-left: 1px solid #cacccd;
     }
   }
 }
