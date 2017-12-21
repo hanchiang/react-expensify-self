@@ -10,3 +10,63 @@
   margin: 0 0 $m-size 0;
   font-style: italic;
 }
+
+.signup-form-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.signup-form {
+  @extend .form;
+  width: 40rem;
+  padding: 0 $m-size;
+  margin: 0 auto;
+}
+
+.signup-form-title {
+  text-align: center;
+}
+
+.signup-form-error {
+  margin: 0 0 $xs-size 0;
+  font-style: italic;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

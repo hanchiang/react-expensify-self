@@ -7,6 +7,9 @@ import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
+import SignUpPage from '../components/SignUpPage';
+import ForgotPasswordPage from '../components/ForgotPasswordPage';
+
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -21,10 +24,12 @@ function AppRouter() {
                     <PublicRoute path="/" component={LoginPage} exact/>
                     <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                     */}
-                    <Route path="/" component={LoginPage} exact/>
+                    <PublicRoute path="/" component={LoginPage} exact/>
                     <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                     <PrivateRoute path="/create" component={AddExpensePage} />
                     <PrivateRoute path="/edit/:id" component={EditExpensePage} />
+                    <PublicRoute path="/signup" component={SignUpPage} />
+                    <PublicRoute path="/forgot" component={ForgotPasswordPage} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </div>

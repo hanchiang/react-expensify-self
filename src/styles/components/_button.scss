@@ -8,6 +8,26 @@
   line-height: 1;
   padding: $s-size;
   text-decoration: none;
+
+  &:disabled {
+    background-color: transparentize($blue, 0.5);
+    cursor: not-allowed;
+  }
+}
+
+.button-normal {
+  background-color: white;
+  border: 1px solid rgba(50, 50, 50, 0.2);
+  color: $dark-grey;
+  border-radius: 3px;
+  padding: $s-size $m-size;
+}
+
+.button-warning {
+  background-color: #D9534F;
+  border: 1px solid darken(#D9534F, 10%);
+  border-radius: 3px;
+  padding: $s-size $m-size;
 }
 
 .button-link {
@@ -16,4 +36,14 @@
 
 .button-remove {
   background: #888;
+}
+
+.signup-button {
+  height: 50px;
+  &:focus {
+    outline: none;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

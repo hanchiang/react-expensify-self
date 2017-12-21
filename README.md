@@ -1,14 +1,32 @@
-# Git Commands
 
-git init - Create a new git repository  
-git status - View changes to the project  
-git add - Add files to staging area  
-git commit - Creates a new commit with files from staging area  
-git log - View recent commits  
+This project is created using the react boilerplate by [Andrew Mead](https://github.com/andrewjmead)
+
+## Design decisions
+* Creation time for expenses is stored in milliseconds  
+* Date filters are stored as moment objects  
+* Currency is stored as integer(cents)  
+
+## Sign out work flow
+* Click on logout button
+* Dispatch async action to trigger auth.signOut()
+* auth.onAuthStateChanged() gets triggered
+* Dispatch logout action to clear auth state
+* isAuthentication in PrivateRoute becomes false, and redirects to login page
+
 
 ## Libraries used
-moment - For displaying and manipulating time. 
--- Creation time for expenses is stored in millisecond  
--- Date filters are stored as moment objects
-react-dates - To display date pickers, with moment as dependency
-numeral - To store and format currency, which is stored as integers(cents)
+* __Moment__ - For displaying and manipulating time.   
+* __React-dates__ - To display date pickers, with moment as dependency  
+* __Numeral__ - To store and format currency    
+* __Firebase__ - Provides usrt authentication and data persistence  
+* __Redux-saga__ - To handle side effects such as authentication, and interactions with the database  
+* __React-router__ - Handles routing between pages  
+* __Express__ - To serve the app live  
+
+
+## Demo
+[Live demo](https://han-expensify.herokuapp.com/)
+
+
+## TO DO
+* Sign up: Handle case where email already exist

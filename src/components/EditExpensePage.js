@@ -3,34 +3,62 @@ import { connect } from 'react-redux';
 
 import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import DeleteExpenseModal from './DeleteExpenseModal';
 
-function EditExpensePage(props) {
-  const { expense } = props;
+class EditExpensePage extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const onSubmit = (expense) => {
-    props.onSubmit(expense);
-    props.history.push('/dashboard');
-  };
-
-  const onRemove = (id) => {
-    props.onRemove(expense.id);
-    props.history.push('/dashboard');
+    this.state = {
+      showModal: false,
+      shouldRemove: false
+    };
   }
 
-  return (
-    <div>
-      <div className="page-header">
-        <div className="content-container">
-          <h1 className="page-header-title">Edit Expense</h1>
+  onSubmit = (expense) => {
+    console.log('submit!')
+    this.props.onSubmit(expense);
+    this.props.history.push('/dashboard');
+  };
+
+  onRemoveClick = () => {
+    this.setState({showModal: true});
+  }
+
+  onModalClose = () => this.setState({showModal: false});
+
+  onModalConfirm = (shouldRemove) => {
+    this.setState({ shouldRemove, showModal: false });
+    if (shouldRemove) {
+      this.props.onRemove(this.props.expense.id);
+      this.props.history.push('/dashboard');
+    }
+  }
+
+  render() {
+    const { expense } = this.props;
+    return (
+      <div id="edit-expense-page">
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header-title">Edit Expense</h1>
+          </div>
         </div>
+
+        <div className="content-container">
+          <ExpenseForm expense={expense} onSubmit={this.onSubmit} isEdit={true} onRemove={this.onRemoveClick} />
+        </div>
+
+      {
+        <DeleteExpenseModal showModal={this.state.showModal}
+          onModalConfirm={this.onModalConfirm}
+          onModalClose={this.onModalClose}
+        />
+      }
       </div>
-      
-      <div className="content-container">
-          <ExpenseForm expense={expense} onSubmit={onSubmit} isEdit={true} onRemove={onRemove} />
-      </div>
-      
-    </div>
-  );
+    );
+  }
+  
 }
 
 const mapStateToProps = (state, props) => ({

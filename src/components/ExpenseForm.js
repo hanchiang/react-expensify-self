@@ -48,7 +48,7 @@ class ExpenseForm extends React.Component {
   }
 
   onRemove = (event) => {
-    this.props.onRemove(this.props.expense.id);
+    this.props.onRemove();
   }
 
   render() {
@@ -71,7 +71,9 @@ class ExpenseForm extends React.Component {
 
           <div className="button-group">
             <button className="button">Save Expense</button>
-            { this.props.isEdit && <button onClick={this.onRemove} className="button button-remove">Remove expense</button> }
+            { this.props.isEdit && 
+              <button type="button" onClick={this.onRemove} className="button button-remove">Remove expense</button> 
+            }
           </div>
         </form>
     );

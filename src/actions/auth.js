@@ -1,5 +1,5 @@
 import firebase, { googleAuthProvider } from '../firebase/firebase';
-import { LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGOUT } from '../constants/actionTypes';
+import { LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGOUT, CREATE_USER } from '../constants/actionTypes';
 
 const login = (uid) => ({
   type: LOGIN,
@@ -18,4 +18,10 @@ const startLogout = () => ({
   type: AUTH_LOGOUT
 });
 
-export { startLogin, startLogout, login, logout };
+const createUser = (email, password) => ({
+  type: CREATE_USER,
+  email,
+  password
+});
+
+export { login, startLogin, logout, startLogout, createUser };

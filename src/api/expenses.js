@@ -23,7 +23,6 @@ const fetchFromDatabase = (path) => {
 }
 
 const editToDataBase = (path, updates) => database.ref(path).update(updates);
-
 const removeFromDatabase = (path) => database.ref(path).remove();
 
 export { addToDatabase, fetchFromDatabase, editToDataBase, removeFromDatabase };

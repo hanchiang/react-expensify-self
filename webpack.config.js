@@ -22,11 +22,13 @@ module.exports = (env) => {
             filename: 'bundle.js'
         },
         module: {
-            rules: [{
+            rules: [
+                {
                     loader: 'babel-loader',
                     test: /\.js$/,
                     exclude: /node_modules/
-                }, {
+                }, 
+                {
                     test: /\.s?css$/,
                     use: CSSExtract.extract({
                         use: [
@@ -40,10 +42,30 @@ module.exports = (env) => {
                             options: {
                                 sourceMap: true
                             }
+                        }]
+                    })
+                },
+                {
+                    test: /\.(png|jpg|gif)$/,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 8192
+                            }
                         }
                     ]
-                })
-            }]
+                },
+                {
+                    test: /\.(png|jpg|gif)$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {}
+                        }
+                    ]
+                }
+            ]
         },
         plugins: [
             CSSExtract,
