@@ -1,5 +1,9 @@
 import firebase, { googleAuthProvider } from '../firebase/firebase';
-import { LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGOUT, CREATE_USER } from '../constants/actionTypes';
+import {
+  LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGOUT,
+  CREATE_USER, CREATE_USER_ERROR,
+  SEND_PASSWORD_RESET, SEND_PASSWORD_RESET_ERROR
+} from '../constants/actionTypes';
 
 const login = (uid) => ({
   type: LOGIN,
@@ -10,8 +14,9 @@ const logout = () => ({
   type: LOGOUT
 });
 
-const startLogin = () => ({
-  type: AUTH_LOGIN
+const startLogin = (payload) => ({
+  type: AUTH_LOGIN,
+  payload
 });
 
 const startLogout = () => ({
@@ -24,4 +29,20 @@ const createUser = (email, password) => ({
   password
 });
 
-export { login, startLogin, logout, startLogout, createUser };
+const createUserError = (error) => ({
+  type: CREATE_USER_ERROR,
+  createUserError: error
+});
+
+const sendPasswordReset = (email) => ({
+  type: SEND_PASSWORD_RESET,
+  email
+});
+
+const sendPasswordResetError = (error) => ({
+  type: SEND_PASSWORD_RESET_ERROR,
+  sendPasswordResetError: error
+});
+
+export { login, startLogin, logout, startLogout, createUser, createUserError,
+  sendPasswordReset, sendPasswordResetError };

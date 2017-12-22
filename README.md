@@ -13,6 +13,9 @@ This project is created using the react boilerplate by [Andrew Mead](https://git
 * Dispatch logout action to clear auth state
 * isAuthentication in PrivateRoute becomes false, and redirects to login page
 
+## Sign up work flow
+* After creating an account, user will be logged in automatically
+
 
 ## Libraries used
 * __Moment__ - For displaying and manipulating time.   
@@ -29,4 +32,8 @@ This project is created using the react boilerplate by [Andrew Mead](https://git
 
 
 ## TO DO
-* Sign up: Handle case where email already exist
+* Sign up: Ask for user's name, and set it as their display name
+* Login with password: Complete error handling
+* Look at nested routes.
+* Tabbed login form
+* Link multipel auth providers

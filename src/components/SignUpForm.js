@@ -1,111 +1,79 @@
 import React from 'react';
-import validator from 'validator';
+import { connect } from 'react-redux';
 
-// Client sided validation: Using second method
-// First: Check for errors when form is submitted, and display error
-// Second: Disable submit button, can continuous validate error as user fills up the form
-//         Enable submit button when inputs are valid
+import { Formik, Field, Form } from 'formik';
+import Yup from 'yup';
 
+// Formik form logic
+function MyForm(props) {
+  const { errors, isSubmitting, touched, setErrors, createUserError } = props;
+  const textFieldClass = touched.email && errors.email ? 'text-input error' : 'text-input';
+  const passwordFieldClass = touched.password && errors.password ? 'password error' : 'password';
+  const passwordConfirmFieldClass = touched.confirmPassword && errors.confirmPassword ? 'password error' : 'password';
+  
+  return (
+    <Form className="signup-form">
+      <h1 className="signup-form-title">Sign up</h1>
 
-class SignUpForm extends React.Component {
-  constructor(props) {
-    super(props);
+      {touched.email && errors.email && <p className="signup-error">{errors.email}</p>}
+      {createUserError && <p className="signup-error">{createUserError}</p>}
+      <Field className={textFieldClass} type="text" name="email" placeholder="Email" />
 
-    this.state = {
-      isEmailValid: false,
-      isPasswordValid: false,
-      error: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      isSubmitting: false,
-    };
-  }
+      {touched.password && errors.password && <p className="signup-error">{errors.password}</p>}
+      <Field className={passwordFieldClass} name="password" type="password" placeholder="Password" />
 
-  validatePassword = (password1, password2) => 
-    (password1 !== '' && password2 !== '') && (password1 === password2);
-
-  onEmailChange = (event) => {
-    const email = event.target.value;
-    if (validator.isEmail(email)) {
-      this.setState({email, isEmailValid: true});
-    } else {
-      this.setState({ email, isEmailValid: false });
-    }
-  }
-   
-  onPasswordChange = (event) => {
-    const password = event.target.value;
-    if (this.validatePassword(password, this.state.confirmPassword)) {
-      this.setState({password, isPasswordValid: true});
-    } else {
-      this.setState({password, isPasswordValid: false});
-    }
-    
-  }
-  onConfirmPasswordChange = (event) => {
-    const confirmPassword = event.target.value;
-    if (this.validatePassword(confirmPassword, this.state.password)) {
-      this.setState({ confirmPassword, isPasswordValid: true });
-    } else {
-      this.setState({ confirmPassword, isPasswordValid: false });
-    }
-  }
-
-  onSubmit = (event) => {
-    event.preventDefault();
-    this.setState({ isSubmitting: true});
-    this.props.onSubmit(this.state.email, this.state.password);
-    /*
-    let error = [];
-    if (this.state.email === '') {
-      error.push('Please enter email');
-    } else if (!validator.isEmail(this.state.email)) {
-      error.push('Email is invalid');
-    }
-    if (this.state.password === '' || this.state.password === '') {
-      error.push('Please enter the passwords');
-    }
-    else if (this.state.password !== this.state.confirmPassword) {
-      error.push('Passwords do not match');
-    }
-    if (error.length === 0) {
-      error = '';
-      this.props.onSubmit(this.state.email, this.state.password);
-    }
-    this.setState({error});
-    */
-  }
-
-  render() {
-    const error = this.state.error;
-
-    return (
-      <div className="signup-form-layout content-container">
-        <form className="signup-form" onSubmit={this.onSubmit} >
-          <h1 className="signup-form-title">Sign up</h1>
-
-          { error && error.map(err => <p className="signup-form-error">{err}</p>) }
-
-          <input className="text-input" value={this.email} onChange={this.onEmailChange} 
-            type="text" placeholder="Email"/>
-          <input className="password" value={this.password} onChange={this.onPasswordChange} 
-            type="password" placeholder="Password (at least 6 characters)" />
-          <input className="password" value={this.confirmPassword} onChange={this.onConfirmPasswordChange}
-            type="password" placeholder="Confirm password (at least 6 characters)" />
-          <button className="button signup-button" disabled={!this.state.isEmailValid || !this.state.isPasswordValid} >Register</button>
-          {/* this.state.isSubmitting ?
-            <button className="button signup-button" disabled={!this.state.isEmailValid || !this.state.isPasswordValid} >
-              <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-            </button>
-            :
-            <button className="button signup-button" disabled={!this.state.isEmailValid || !this.state.isPasswordValid} >Register</button>
-          */}
-        </form>
-      </div>
-
-    );
-  }
+      {touched.confirmPassword && errors.confirmPassword && <p className="signup-error">{errors.confirmPassword}</p>}
+      <Field className={passwordConfirmFieldClass} name="confirmPassword" type="password" placeholder="Confirm password" />
+      <button className="button signup-button"
+        disabled={isSubmitting || (errors.email || errors.password || errors.confirmPassword)} >
+        Register
+      </button>
+    </Form>
+  );
 }
 
-export default SignUpForm;
+function SignUpForm(props) {
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Email is not valid').required('Email is required'),
+    password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+    confirmPassword: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required')
+  });
+  const initialValues = {
+    email: '',
+    password: '',
+    confirmPassword: ''
+  };
+  const { createUserError } = props;
+
+  const onSubmit = (values, actions) => {
+    const { setSubmitting, resetForm, setErrors } = actions;
+    const { email, password, confirmPassword } = values;
+
+    if (password !== confirmPassword) {
+      setErrors({
+        password: 'Passwords do not match',
+        confirmPassword: 'Passwords do not match'
+      });
+    } else {
+      props.onSubmit(values.email, values.password);
+    }
+  }
+
+  return (
+    <div className="signup-form-layout content-container">
+      <Formik
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        render={props => 
+          <MyForm {...props} createUserError={createUserError} />}
+      />
+    </div>
+  );
+}
+
+const mapStateToProps = (state) => ({
+  createUserError: state.auth.createUserError
+});
+
+export default connect(mapStateToProps)(SignUpForm);

@@ -15,21 +15,40 @@ class ExpenseForm extends React.Component {
       createdAt: expense ? moment(expense.createdAt) : moment(),
       focused: false
     };
+    this.onDateChange = this.onDateChange.bind(this);
+    this.onFocusChange = this.onFocusChange.bind(this);
+    this.onDescriptionChange = this.onDescriptionChange.bind(this);
+    this.onAmountChange = this.onAmountChange.bind(this);
+    this.onNoteChange = this.onNoteChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onRemove = this.onRemove.bind(this);
   }
 
-  onDateChange = (createdAt) => this.setState({createdAt});
-  onFocusChange = ({focused}) => this.setState({focused});
-  onDescriptionChange = (event) => this.setState({description: event.target.value});
-  onAmountChange = (event) => {
+  onDateChange(createdAt) {
+    this.setState({ createdAt });
+  }
+
+  onFocusChange({focused}) {
+    this.setState({ focused });
+  }
+
+  onDescriptionChange(event) {
+    this.setState({ description: event.target.value });
+  }
+
+  onAmountChange(event)  {
     const amount = event.target.value;
     const amountRegex = /^\d+(\.\d{0,2})?$/;
     if (!amount || amount.match(amountRegex)) {
       this.setState({amount});
     }
   }
-  onNoteChange = (event) => this.setState({ note: event.target.value });
 
-  onSubmit = (event) => {
+  onNoteChange(event) {
+    this.setState({ note: event.target.value });
+  }
+
+  onSubmit(event) {
     event.preventDefault();
     let error = '';
 
@@ -47,7 +66,7 @@ class ExpenseForm extends React.Component {
     }
   }
 
-  onRemove = (event) => {
+  onRemove(event) {
     this.props.onRemove();
   }
 

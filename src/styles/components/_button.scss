@@ -30,12 +30,36 @@
   padding: $s-size $m-size;
 }
 
+.button-remove {
+  background: #888;
+}
+
 .button-link {
   background: none;
 }
 
-.button-remove {
-  background: #888;
+.logout-button {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+}
+
+.button-link-filters {
+  background: none;
+  padding: 0;
+  color: $blue;
+  font-size: $font-size-normal;
+  transition: color 0.2s ease-in-out;
+  font-weight: bold;
+  
+  &:hover {
+    color: $mid-blue;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 .signup-button {
@@ -46,4 +70,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.forgot-button {
+  @extend .signup-button;
 }

@@ -1,9 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function ForgotPasswordPage() {
+import ForgotPasswordForm from './ForgotPasswordForm';
+import { sendPasswordReset } from '../actions/auth';
+
+function ForgotPasswordPage(props) {
   return (
-    <div>Forgot password page</div>
+    <div>
+      <ForgotPasswordForm onPasswordReset={props.sendPasswordReset} />
+    </div>
   );
 }
 
-export default ForgotPasswordPage;
+const mapDispatchToProps = (dispatch) => ({
+  sendPasswordReset: (email) => dispatch(sendPasswordReset(email))
+});
+
+export default connect(null, mapDispatchToProps)(ForgotPasswordPage);

@@ -11,14 +11,28 @@ class ExpenseListFilters extends React.Component {
     this.state = {
       focusedInput: null
     };
+
+    this.handleTextFilterChange = this.handleTextFilterChange.bind(this);
+    this.handleSortFilterChange = this.handleSortFilterChange.bind(this);
+    this.onDatesChange = this.onDatesChange.bind(this);
+    this.onFocusChange = this.onFocusChange.bind(this);
   }
-  handleTextFilterChange = (event) => this.props.setTextFilter(event.target.value);
-  handleSortFilterChange = (event) => this.props.setSortBy(event.target.value);
-  onDatesChange = ({startDate, endDate}) => {
+  
+  handleTextFilterChange(event) {
+    this.props.setTextFilter(event.target.value);
+  } 
+
+  handleSortFilterChange(event) {
+    this.props.setSortBy(event.target.value);
+  }
+  onDatesChange({startDate, endDate}) {
     this.props.setStartDate(startDate);
     this.props.setEndDate(endDate);
   }
-  onFocusChange = (focusedInput) => this.setState({focusedInput});
+
+  onFocusChange(focusedInput) {
+    this.setState({ focusedInput });
+  }
 
 
   render () {

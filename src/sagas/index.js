@@ -1,10 +1,12 @@
 import { all, takeEvery } from 'redux-saga/effects';
 
 import { 
-  AUTH_LOGIN, AUTH_LOGOUT, CREATE_USER,
-  START_ADD_EXPENSE, START_SET_EXPENSE, START_EDIT_EXPENSE, START_REMOVE_EXPENSE
+  AUTH_LOGIN, AUTH_LOGOUT,
+  START_ADD_EXPENSE, START_SET_EXPENSE, START_EDIT_EXPENSE, START_REMOVE_EXPENSE,
+  CREATE_USER,
+  SEND_PASSWORD_RESET
 } from '../constants/actionTypes';
-import { handleLogin, handleLogout, handleCreateUser } from './auth';
+import { handleLogin, handleLogout, handleCreateUser, handleSendPasswordReset } from './auth';
 import { handleAddExpense, handleSetExpense, handleEditExpense, handleRemoveExpense } from './expenses';
 
 // Root saga
@@ -16,7 +18,8 @@ function* watchAll() {
     takeEvery(START_SET_EXPENSE, handleSetExpense),
     takeEvery(START_EDIT_EXPENSE, handleEditExpense),
     takeEvery(START_REMOVE_EXPENSE, handleRemoveExpense),
-    takeEvery(CREATE_USER, handleCreateUser)
+    takeEvery(CREATE_USER, handleCreateUser),
+    takeEvery(SEND_PASSWORD_RESET, handleSendPasswordReset),
   ]);
 }
 

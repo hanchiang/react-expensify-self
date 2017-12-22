@@ -5,6 +5,12 @@
   font-size: $font-size-large;
   font-weight: 300;
 }
+.error {
+  border: 1px solid darken(red, 3%);
+  &:focus {
+    outline: none;
+  }
+}
 
 .select {
   @extend .text-input;

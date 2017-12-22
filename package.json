@@ -16,7 +16,6 @@
     "babel-cli": "6.24.1",
     "babel-core": "6.25.0",
     "babel-loader": "^7.1.2",
-    "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "1.5.2",
@@ -26,7 +25,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "firebase": "^4.8.0",
-    "firebase-tools": "^3.16.0",
+    "formik": "^0.10.5",
     "global": "^4.3.2",
     "history": "^4.7.2",
     "moment": "^2.19.3",
@@ -45,8 +44,8 @@
     "sass-loader": "6.0.6",
     "style-loader": "0.18.2",
     "url-loader": "^0.6.2",
-    "validator": "^9.2.0",
-    "webpack": "3.1.0"
+    "webpack": "3.1.0",
+    "yup": "^0.23.0"
   },
   "devDependencies": {
     "cross-env": "^5.1.1",

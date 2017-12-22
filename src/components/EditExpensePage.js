@@ -13,20 +13,50 @@ class EditExpensePage extends React.Component {
       showModal: false,
       shouldRemove: false
     };
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onRemoveClick = this.onRemoveClick.bind(this);
+    this.onModalClose = this.onModalClose.bind(this);
+    this.onModalConfirm = this.onModalConfirm.bind(this);
   }
-
+  /*
   onSubmit = (expense) => {
     console.log('submit!')
     this.props.onSubmit(expense);
     this.props.history.push('/dashboard');
   };
+  */
+  onSubmit(expense) {
+    console.log('submit!')
+    this.props.onSubmit(expense);
+    this.props.history.push('/dashboard');
+  }
 
+  onRemoveClick() {
+    this.setState({ showModal: true });
+  }
+
+  /*
   onRemoveClick = () => {
     this.setState({showModal: true});
   }
+  */
+  onModalClose() {
+    this.setState({ showModal: false });
+  }
 
+  /*
   onModalClose = () => this.setState({showModal: false});
+  */
 
+  onModalConfirm(shouldRemove) {
+    this.setState({ shouldRemove, showModal: false });
+    if (shouldRemove) {
+      this.props.onRemove(this.props.expense.id);
+      this.props.history.push('/dashboard');
+    }
+  }
+
+  /*
   onModalConfirm = (shouldRemove) => {
     this.setState({ shouldRemove, showModal: false });
     if (shouldRemove) {
@@ -34,6 +64,7 @@ class EditExpensePage extends React.Component {
       this.props.history.push('/dashboard');
     }
   }
+  */
 
   render() {
     const { expense } = this.props;

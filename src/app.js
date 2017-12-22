@@ -18,22 +18,26 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
 
-export const jsx = (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-);
-export const renderApp = () => ReactDOM.render(jsx, document.getElementById('app'));
+export function App() {
+  return (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>    
+  );
+}
+
+export const renderApp = () => ReactDOM.render(<App />, document.getElementById('app'));
 
 /*
-let hasRendered = false;
-const renderApp = () => {
-  if (!hasRendered) {
-    ReactDOM.render(jsx, document.getElementById('app'));
-    hasRendered = true;
-  }
-};
+export const jsx = (
+  <AppContainer>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  </AppContainer>
+);
 */
+
 
 
 // renderApp();

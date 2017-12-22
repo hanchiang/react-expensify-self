@@ -16,13 +16,11 @@ function* handleAddExpense(action) {
   const path = `users/${uid}/expenses`;
   const addedExpense = yield call(addToDatabase, path, expense);
   yield put(addExpense(addedExpense));
-  
 }
 
 function* handleSetExpense(action) {
   const state = yield select();
   const uid = state.auth.uid;
-
   const path = `users/${uid}/expenses`;
   const expenses = yield call(fetchFromDatabase, path);
   yield put(setExpense(expenses));
@@ -30,18 +28,18 @@ function* handleSetExpense(action) {
 }
 
 function* handleEditExpense(action) {
+  const { updates, id } = action;
   const state = yield select();
   const uid = state.auth.uid;
-  const { updates, id } = action;
   const path = `users/${uid}/expenses/${id}`;
   yield call(editToDataBase, path, updates);
   yield put(editExpense(id, updates));
 }
 
 function* handleRemoveExpense(action) {
+  const { id } = action;
   const state = yield select();
   const uid = state.auth.uid;
-  const { id } = action;
   const path = `users/${uid}/expenses/${id}`;
   yield call(removeFromDatabase, path);
   yield put(removeExpense(id));
