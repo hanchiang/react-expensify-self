@@ -1,26 +1,39 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
-import { connect } from 'react-redux';
 import Yup from 'yup';
 
-function MyForm(props) {
-  const { errors, isSubmitting, touched, setErrors, sendPasswordResetError } = props;
-  const textFieldClass = touched.email && errors.email ? 'text-input error' : 'text-input';
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <Form className="forgot-form">
-      <h1 className="forgot-form-title">Sign up</h1>
+  componentWillReceiveProps(nextProps) {
+    const { sendPasswordResetError, setErrors, setSubmitting } = nextProps;
+    if (this.props.sendPasswordResetError === undefined && sendPasswordResetError) {
+      setErrors({ email: sendPasswordResetError});
+      setSubmitting(false);
+    }
+  }
 
-      {touched.email && errors.email && <p className="forgot-error">{errors.email}</p>}
-      {sendPasswordResetError && <p className="forgot-error">{sendPasswordResetError}</p>}
-      <Field className={textFieldClass} type="text" name="email" placeholder="Email" />
+  render() {
+    const { errors, isSubmitting, touched } = this.props;
+    const textFieldClass = touched.email && errors.email ? 'forgot-text-input error' : 'forgot-text-input';
 
-      <button className="button forgot-button"
-        disabled={isSubmitting || errors.email} >
-        Reset password
+    return (
+      <Form className="forgot-form">
+        <h1 className="forgot-form-title">Reset password</h1>
+
+        {touched.email && errors.email && <p className="forgot-error">{errors.email}</p>}
+        <Field className={textFieldClass} type="text" name="email" placeholder="Email" />
+
+        <button className="button reset-password-button"
+          disabled={isSubmitting || errors.email} >
+          Reset password
       </button>
-    </Form>
-  );
+      </Form>
+    );
+  }
+  
 }
 
 function ForgotPasswordForm(props) {
@@ -35,7 +48,6 @@ function ForgotPasswordForm(props) {
   const onSubmit = (values, actions) => {
     const { setSubmitting, resetForm, setErrors } = actions;
     const { email } = values;
-    console.log(email);
     props.onPasswordReset(email);
   }
 
@@ -52,8 +64,4 @@ function ForgotPasswordForm(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  sendPasswordResetError: state.auth.sendPasswordResetError
-});
-
-export default connect(mapStateToProps)(ForgotPasswordForm);
+export default ForgotPasswordForm;

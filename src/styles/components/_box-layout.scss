@@ -11,13 +11,36 @@
 .box-layout-box {
   background: fade-out(white, .15);
   border-radius: 3px;
-  padding: $l-size $m-size;
+  padding: 12px 15px;
   text-align: center;
-  width: 30rem;
-  height: 26rem;
+  width: 35rem;
 }
 
 .box-layout-title {
-  margin: 0 0 $m-size;
-  line-height: 1;
+  margin: 0;
+}
+
+.box-layout-subtitle {
+  margin-top: 1rem;
+}
+
+.google-login-layout {
+  display: flex;
+  flex-direction: column;
+  > p {
+    margin: 10px 0;
+    font-style: italic;
+  }
+}
+
+.login-button-layout {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forgot-password-layout {
+  > p {
+    margin: 0 0 8px 0;
+    line-height: 1;
+  }
 }

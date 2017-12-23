@@ -30,7 +30,7 @@ const verifyEmail = () => {
 
 const sendPasswordResetEmail = (email) => {
   const actionCodeSettings = { url: 'https://han-expensify.herokuapp.com' };
-  return auth.sendPasswordResetEmail(email)
+  return auth.sendPasswordResetEmail(email, actionCodeSettings)
   .then(() => ({}))
   .catch(error => ({error}));
 };

@@ -1,0 +1,18 @@
+// Ensure both login and signup tabs have the same height, good idea or not?
+.react-tabs__tab-panel {
+  // height: 264px;
+
+  &[class$='--selected'] {
+    opacity: 1;
+    animation: fade 0.2s ease-in-out;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

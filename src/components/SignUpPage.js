@@ -6,14 +6,16 @@ import { createUser } from '../actions/auth';
 
 function SignUpPage(props) {
   return (
-    <div>
-      <SignUpForm onSubmit={createUser} />
-    </div>
+    <SignUpForm createUserError={props.createUserError} onSubmit={props.createUser} />
   );
 }
+
+const mapStateToProps = (state) => ({
+  createUserError: state.auth.createUserError
+});
 
 const mapDispatchToProps = (dispatch) => ({
   createUser: (email, password) => dispatch(createUser(email, password))
 });
 
-export default connect(null, mapDispatchToProps)(SignUpPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

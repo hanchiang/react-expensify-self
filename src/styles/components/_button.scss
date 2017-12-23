@@ -34,17 +34,6 @@
   background: #888;
 }
 
-.button-link {
-  background: none;
-}
-
-.logout-button {
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
-  }
-}
 
 .button-link-filters {
   background: none;
@@ -62,16 +51,36 @@
   }
 }
 
+.button-link {
+  background: none;
+}
+
+.logout-button {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+}
+
+.login-button {
+  @extend .button;
+  width: 100%;
+  @media (min-width: $desktop-breakpoint) {
+    width: 120px;
+  }
+}
+
 .signup-button {
-  height: 50px;
   &:focus {
     outline: none;
   }
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.forgot-button {
+.reset-password-button {
   @extend .signup-button;
+}
+
+.google-button {
+  background-color: $google-red;
 }

@@ -1,35 +1,50 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { Formik, Field, Form } from 'formik';
 import Yup from 'yup';
 
 // Formik form logic
-function MyForm(props) {
-  const { errors, isSubmitting, touched, setErrors, createUserError } = props;
-  const textFieldClass = touched.email && errors.email ? 'text-input error' : 'text-input';
-  const passwordFieldClass = touched.password && errors.password ? 'password error' : 'password';
-  const passwordConfirmFieldClass = touched.confirmPassword && errors.confirmPassword ? 'password error' : 'password';
-  
-  return (
-    <Form className="signup-form">
-      <h1 className="signup-form-title">Sign up</h1>
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-      {touched.email && errors.email && <p className="signup-error">{errors.email}</p>}
-      {createUserError && <p className="signup-error">{createUserError}</p>}
-      <Field className={textFieldClass} type="text" name="email" placeholder="Email" />
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    const { createUserError, setSubmitting, setErrors } = nextProps;
+    if (this.props.createUserError === undefined && createUserError) {
+      setSubmitting(false);
+      setErrors({email: createUserError});
+    }
+  }
 
-      {touched.password && errors.password && <p className="signup-error">{errors.password}</p>}
-      <Field className={passwordFieldClass} name="password" type="password" placeholder="Password" />
+  render() {
+    const { errors, isSubmitting, setSubmitting, touched } = this.props;
+    const textFieldClass = touched.email && errors.email ?
+      'text-input signup-text-input error' : 'text-input signup-text-input';
+    const passwordFieldClass = touched.password && errors.password ?
+      'password signup-password error' : 'password signup-password';
+    const passwordConfirmFieldClass = touched.confirmPassword && errors.confirmPassword
+      ? 'password signup-password error' : 'password signup-password';    
 
-      {touched.confirmPassword && errors.confirmPassword && <p className="signup-error">{errors.confirmPassword}</p>}
-      <Field className={passwordConfirmFieldClass} name="confirmPassword" type="password" placeholder="Confirm password" />
-      <button className="button signup-button"
-        disabled={isSubmitting || (errors.email || errors.password || errors.confirmPassword)} >
-        Register
-      </button>
-    </Form>
-  );
+    return (
+      <Form className="signup-form">
+        {touched.email && errors.email && <p className="signup-error">{errors.email}</p>}
+        {/* {createUserError && <p className="signup-error">{createUserError}</p>} */}
+        <Field className={textFieldClass} type="text" name="email" placeholder="Email" />
+
+        {touched.password && errors.password && <p className="signup-error">{errors.password}</p>}
+        <Field className={passwordFieldClass} name="password" type="password" placeholder="Password" />
+
+        {touched.confirmPassword && errors.confirmPassword && <p className="signup-error">{errors.confirmPassword}</p>}
+        <Field className={passwordConfirmFieldClass} name="confirmPassword" type="password" placeholder="Confirm password" />
+        <button className="button signup-button"
+          disabled={isSubmitting || (errors.email || errors.password || errors.confirmPassword)} >
+          Register
+        </button>
+      </Form>
+    );
+  }
 }
 
 function SignUpForm(props) {
@@ -60,20 +75,14 @@ function SignUpForm(props) {
   }
 
   return (
-    <div className="signup-form-layout content-container">
-      <Formik
-        onSubmit={onSubmit}
-        validationSchema={validationSchema}
-        initialValues={initialValues}
-        render={props => 
-          <MyForm {...props} createUserError={createUserError} />}
-      />
-    </div>
+    <Formik
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+      initialValues={initialValues}
+      render={props => 
+        <MyForm {...props} createUserError={createUserError} />}
+    />
   );
 }
 
-const mapStateToProps = (state) => ({
-  createUserError: state.auth.createUserError
-});
-
-export default connect(mapStateToProps)(SignUpForm);
+export default SignUpForm;

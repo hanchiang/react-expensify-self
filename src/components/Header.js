@@ -9,24 +9,24 @@ export function Header(props) {
     const user = auth.currentUser;
     const { displayName, photoURL } = user;
     return (
-        <header className="header">            
+        <header className="header">
             <div className="content-container">
                 <div className="header-content">
                     <Link className="header-title" to="/dashboard">
                         <h1>Expensify</h1>
                     </Link>
-                
+
                     <div className="header-secondary">
-                        <div className="header-greetings">
-                            {displayName && photoUrl && 
-                                <div>
-                                    <img className="profile-pic" src={photoURL} alt="Profile picture" height="42" />
-                                    <span className="show-for-desktop greeting-text">Hello {displayName}!</span>
-                                </div>
-                            }
-                        </div>
+
+                        {displayName && photoURL &&
+                            <div className="header-greetings">
+                                <img className="profile-pic" src={photoURL} alt="Profile picture" height="42" />
+                                <span className="show-for-desktop greeting-text">Hello {displayName}!</span>
+                            </div>
+                        }
+
                         <button className="button button-link logout-button" onClick={props.startLogout}>Logout</button>
-                    </div>      
+                    </div>
                 </div>
             </div>
         </header>

@@ -16,7 +16,6 @@ This project is created using the react boilerplate by [Andrew Mead](https://git
 ## Sign up work flow
 * After creating an account, user will be logged in automatically
 
-
 ## Libraries used
 * __Moment__ - For displaying and manipulating time.   
 * __React-dates__ - To display date pickers, with moment as dependency  
@@ -37,3 +36,9 @@ This project is created using the react boilerplate by [Andrew Mead](https://git
 * Look at nested routes.
 * Tabbed login form
 * Link multipel auth providers
+
+## Note to self
+* Login - Only handle error for logging in with password, but not google login, since it is not critical?
+
+## References
+* [Tabbed login form design](https://t02vt3ludlc288yi5365dsdi-wpengine.netdna-ssl.com/wp-content/uploads/2014/04/tab-login-sign-up-forms.jpg)

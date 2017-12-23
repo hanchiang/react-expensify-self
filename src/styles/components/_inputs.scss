@@ -5,6 +5,7 @@
   font-size: $font-size-large;
   font-weight: 300;
 }
+
 .error {
   border: 1px solid darken(red, 3%);
   &:focus {
@@ -23,4 +24,28 @@
 .textarea {
   @extend .text-input;
   height: 10rem;
+}
+
+// login form inputs
+.login-text-input {
+  @extend .text-input;
+  height: 44px;
+  padding: 6px 10px;
+}
+
+.login-password {
+  @extend .login-text-input;
+}
+
+// sign up form inputs
+.signup-text-input {
+  @extend .login-text-input;
+}
+
+.signup-password {
+  @extend .signup-text-input;
+}
+
+.forgot-text-input {
+  @extend .login-text-input;
 }

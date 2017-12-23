@@ -1,7 +1,7 @@
 import firebase, { googleAuthProvider } from '../firebase/firebase';
 import {
-  LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGOUT,
-  CREATE_USER, CREATE_USER_ERROR,
+  LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGIN_ERROR, AUTH_LOGOUT,
+  CREATE_USER, CREATE_USER_ERROR, REMOVE_CREATE_USER_ERROR,
   SEND_PASSWORD_RESET, SEND_PASSWORD_RESET_ERROR
 } from '../constants/actionTypes';
 
@@ -19,6 +19,11 @@ const startLogin = (payload) => ({
   payload
 });
 
+const startLoginError = (error) => ({
+  type: AUTH_LOGIN_ERROR,
+  loginError: error
+});
+
 const startLogout = () => ({
   type: AUTH_LOGOUT
 });
@@ -34,6 +39,10 @@ const createUserError = (error) => ({
   createUserError: error
 });
 
+const removeCreateUserError = () => ({
+  type: REMOVE_CREATE_USER_ERROR
+});
+
 const sendPasswordReset = (email) => ({
   type: SEND_PASSWORD_RESET,
   email
@@ -44,5 +53,8 @@ const sendPasswordResetError = (error) => ({
   sendPasswordResetError: error
 });
 
-export { login, startLogin, logout, startLogout, createUser, createUserError,
-  sendPasswordReset, sendPasswordResetError };
+export {
+  login, startLogin, startLoginError, logout, startLogout, 
+  createUser, createUserError, removeCreateUserError,
+  sendPasswordReset, sendPasswordResetError 
+};

@@ -1,18 +1,16 @@
 import { call, put } from 'redux-saga/effects';
-
+import { delay } from 'redux-saga';
 import { auth, googleAuthProvider } from '../firebase/firebase';
 import { createUser, verifyEmail, signInWithPopup, 
   signInWithEmailAndPassword, sendPasswordResetEmail 
 } from '../api/auth';
-import { createUserError, sendPasswordResetError } from '../actions/auth';
+import { createUserError, removeCreateUserError, sendPasswordResetError, startLoginError } from '../actions/auth';
 
 function* handleLogin(action) {
   // yield auth.signInWithPopup(googleAuthProvider);
   const { payload } = action;
   const { type: loginType } = payload;
   let user, error;
-  console.log(payload);
-  console.log(loginType);
   
   // https://firebase.google.com/docs/reference/js/firebase.auth#.UserCredential
   if (loginType === 'google') {
@@ -23,19 +21,16 @@ function* handleLogin(action) {
     console.log(user, error);
   }
 
+  // Only handle error for logging in with password
   if (error) {
     console.log(error);
     const { code: errorCode, message: errorMessage } = error;
     switch (errorCode) {
       case 'auth/invalid-email':
-        // yield put(createUserError(errorMessage));
-        break;
       case 'auth/user-disabled':
-        break;
       case 'auth/user-not-found':
-        break;
       case 'auth/wrong-password':
-        break;
+        yield put(startLoginError(errorMessage));
       default:
       // console.log(errorMessage);
     }
@@ -43,7 +38,7 @@ function* handleLogin(action) {
 }
 
 function* handleLogout(action) {
-  const data = yield call([auth, auth.signOut]);  // returns undefined
+  yield call([auth, auth.signOut]);
 }
 
 function* handleCreateUser(action) {
@@ -56,8 +51,12 @@ function* handleCreateUser(action) {
 
     switch(errorCode) {
         case 'auth/email-already-in-use':
+        case 'auth/invalid-email':
+        case 'auth/operation-not-allowed':
+        case 'auth/weak-password':
           yield put(createUserError(errorMessage));
-          break;
+          // yield call(delay, 5000);
+          // yield put(removeCreateUserError());
         default:
           // console.log(errorMessage);
     }
@@ -80,12 +79,19 @@ function* handleSendPasswordReset(action) {
     const { code: errorCode, message: errorMessage } = error;
 
     switch (errorCode) {
+      case 'auth/invalid-email':
+      case 'auth/missing-android-pkg-name':
+      case 'auth/missing-continue-uri':
+      case 'auth/missing-ios-bundle-id':
+      case 'auth/invalid-continue-uri':
+      case 'auth/unauthorized-continue-uri':
       case 'auth/user-not-found':
         yield put(sendPasswordResetError(errorMessage));
-        break;
       default:
         // console.log(errorMessage);
     }
+  } else {
+    console.log('Password reset email sent!');
   }
 }
 

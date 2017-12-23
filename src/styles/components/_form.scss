@@ -11,6 +11,7 @@
   font-style: italic;
 }
 
+// sign up form
 .signup-form-layout {
   display: flex;
   justify-content: center;
@@ -19,27 +20,15 @@
   height: 100vh;
 }
 
-.forgot-form-layout {
-  @extend .signup-form-layout;
-}
-
 .signup-form {
   @extend .form;
-  width: 40rem;
   padding: 0 $m-size;
   margin: 0 auto;
 }
 
-.forgot-form {
-  @extend .signup-form;
-}
-
 .signup-form-title {
   text-align: center;
-}
-
-.forgot-form-title {
-  @extend .signup-form-title
+  margin: 12px 0;
 }
 
 .signup-error {
@@ -48,6 +37,26 @@
   color: darken(red, 3%);
 }
 
+// forgot password form
+.forgot-form-layout {
+  @extend .signup-form-layout;
+  align-items: stretch;
+}
+
+.forgot-form {
+  @extend .signup-form;
+  margin-top: 10%;
+  width: 35rem;
+}
+
+.forgot-form-title {
+  @extend .signup-form-title
+}
+
 .forgot-error {
+  @extend .signup-error;
+}
+
+.login-error {
   @extend .signup-error;
 }
