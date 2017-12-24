@@ -1,35 +1,44 @@
-import { LOGIN, LOGOUT, AUTH_LOGIN_ERROR, 
-  CREATE_USER_ERROR, REMOVE_CREATE_USER_ERROR,
-  SEND_PASSWORD_RESET_ERROR
+import {
+  LOGIN, LOGOUT, SET_AUTH_LOGIN_ERROR, 
+  SET_CREATE_USER_ERROR,
+  SET_SEND_PASSWORD_RESET_ERROR, SET_AUTH_USER_PROFILE, SET_SEND_PASSWORD_RESET_SUCCESS
 } from '../constants/actionTypes';
 
 const authReducer = (state = {}, action) => {
   switch(action.type) {
     case 'LOGIN':
-      return { 
-        ...state,
-        uid: action.uid 
+      return {
+        user: state.user,
+        uid: action.uid
       };
     case 'LOGOUT':
       return {};
-    case CREATE_USER_ERROR:
+    case SET_CREATE_USER_ERROR:
       return { 
         ...state,
         createUserError: action.createUserError
       };
-    case REMOVE_CREATE_USER_ERROR:
-      const {createUserError, ...rest} = state;
-      return {...rest};
-    case SEND_PASSWORD_RESET_ERROR:
+    case SET_SEND_PASSWORD_RESET_ERROR:
       return {
         ...state,
         sendPasswordResetError: action.sendPasswordResetError
       };
-    case AUTH_LOGIN_ERROR:
+    case SET_AUTH_LOGIN_ERROR:
       return {
         ...state,
         loginError: action.loginError
       }
+    case SET_AUTH_USER_PROFILE:
+    console.log(action.user);
+      return {
+        uid: state.uid,
+        user: action.user
+      };
+    case SET_SEND_PASSWORD_RESET_SUCCESS:
+      return {
+        ...state,
+        sendPasswordResetSuccess: action.sendPasswordResetSuccess
+      };
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 .button {
   background-color: $blue;
   border: none;
+  border: 1px solid darken($blue, 5%);
   color: white;
   display: inline-block;
   font-size: $font-size-large;
@@ -8,10 +9,27 @@
   line-height: 1;
   padding: $s-size;
   text-decoration: none;
+  transition: background-color 0.15s ease-in-out;
 
+  &:hover {
+    background-color: darken($blue, 10%);
+    border: 1px solid darken($blue, 15%);
+  }
   &:disabled {
     background-color: transparentize($blue, 0.5);
+    border: 1px solid transparentize($blue, 0.75);
     cursor: not-allowed;
+  }
+}
+
+.google-button {
+  @extend .button;
+  background-color: $red-google;
+  border: 1px solid darken($red-google, 5%);
+
+  &:hover {
+    background-color: darken($red-google, 10%);
+    border: 1px solid darken($red-google, 15%);
   }
 }
 
@@ -42,9 +60,12 @@
   font-size: $font-size-normal;
   transition: color 0.2s ease-in-out;
   font-weight: bold;
+  border: none;
   
   &:hover {
     color: $mid-blue;
+    background-color: transparent;
+    border: none;
   }
   &:focus {
     outline: none;
@@ -58,8 +79,12 @@
 .logout-button {
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease-in-out;
+  border: none;
+  
   &:hover {
     text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    background-color: transparent;
+    border: none;
   }
 }
 
@@ -67,7 +92,7 @@
   @extend .button;
   width: 100%;
   @media (min-width: $desktop-breakpoint) {
-    width: 120px;
+    width: 140px;
   }
 }
 
@@ -79,8 +104,4 @@
 
 .reset-password-button {
   @extend .signup-button;
-}
-
-.google-button {
-  background-color: $google-red;
 }

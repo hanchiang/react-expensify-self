@@ -2,13 +2,28 @@
   display: flex;
   flex-direction: column;
   > * {
-    margin-bottom: $m-size;
+    margin-bottom: $s-size;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    > * {
+      margin-bottom: $m-size;
+    }
   }
 }
 
 .form-error {
   margin: 0 0 $m-size 0;
   font-style: italic;
+}
+
+// login form
+.login-form {
+  @extend .form;
+  margin: 0 auto;
+}
+
+.login-error {
+  @extend .signup-error;
 }
 
 // sign up form
@@ -21,9 +36,7 @@
 }
 
 .signup-form {
-  @extend .form;
-  padding: 0 $m-size;
-  margin: 0 auto;
+  @extend .login-form;
 }
 
 .signup-form-title {
@@ -50,13 +63,38 @@
 }
 
 .forgot-form-title {
-  @extend .signup-form-title
+  @extend .signup-form-title;
 }
 
 .forgot-error {
   @extend .signup-error;
 }
 
-.login-error {
-  @extend .signup-error;
+.reset-success {
+  background-color: $green-success-background;
+  padding: 8px 12px;
+  animation: fade 0.75s ease-in-out;
+
+  .reset-success-message {
+    color: $green-success-text;
+    margin: 0;
+  }
+
+  .reset-success-title {
+    line-height: 1;
+    margin: 0;
+    text-align: center;
+    color: $green-success-text;
+    font-weight: bold;
+  }
+}
+
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

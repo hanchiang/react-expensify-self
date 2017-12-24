@@ -1,40 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { auth } from '../firebase/firebase';
+import { auth, googleAuthProvider } from '../firebase/firebase';
 
-import { startLogout } from '../actions/auth';
+import { startLogout, startLinkAuthProvider } from '../actions/auth';
 
 export function Header(props) {
-    const user = auth.currentUser;
-    const { displayName, photoURL } = user;
-    return (
-        <header className="header">
-            <div className="content-container">
-                <div className="header-content">
-                    <Link className="header-title" to="/dashboard">
-                        <h1>Expensify</h1>
-                    </Link>
+  const { displayName, photoURL } = props;
 
-                    <div className="header-secondary">
+  const onGoogleLink = (event) => props.startLinkAuthProvider(googleAuthProvider);
 
-                        {displayName && photoURL &&
-                            <div className="header-greetings">
-                                <img className="profile-pic" src={photoURL} alt="Profile picture" height="42" />
-                                <span className="show-for-desktop greeting-text">Hello {displayName}!</span>
-                            </div>
-                        }
+  return (
+    <header className="header">
+      <div className="content-container">
+        <div className="header-content">
+          <Link className="header-title" to="/dashboard">
+            <h1>Expensify</h1>
+          </Link>
 
-                        <button className="button button-link logout-button" onClick={props.startLogout}>Logout</button>
-                    </div>
-                </div>
+          <div className="header-secondary">
+            <div className="link-account">
+              <button onClick={onGoogleLink} type="button" className="button">Link with Google</button>
             </div>
-        </header>
-    );
+
+            <div className="header-greetings">
+              {photoURL && <img className="profile-pic" src={photoURL} alt="Profile picture" height="42" />}
+              {displayName && <span className="show-for-desktop greeting-text">Hello {displayName}!</span>}
+            </div>
+
+            <button className="button button-link logout-button" onClick={props.startLogout}>Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    startLogout: () => dispatch(startLogout())
+const mapStateToProps = (state) => ({
+  displayName: state.auth.user && state.auth.user.displayName,
+  photoURL: state.auth.user && state.auth.user.photoURL,
+  state
 });
 
-export default connect(null, mapDispatchToProps)(Header);
+const mapDispatchToProps = (dispatch) => ({
+  startLogout: () => dispatch(startLogout()),
+  startLinkAuthProvider: (payload) => dispatch(startLinkAuthProvider(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

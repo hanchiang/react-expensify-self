@@ -31,14 +31,14 @@ This project is created using the react boilerplate by [Andrew Mead](https://git
 
 
 ## TO DO
-* Sign up: Ask for user's name, and set it as their display name
-* Login with password: Complete error handling
+* Fix Forgot password: Figure out how to fade in and slide up. Slide doesnt work
+* Fix after sign up: user is set, but unable to retrieve properties
 * Look at nested routes.
-* Tabbed login form
-* Link multipel auth providers
+* Link multiple auth providers
 
 ## Note to self
 * Login - Only handle error for logging in with password, but not google login, since it is not critical?
+* Set auth user in redux store - For both login and when page refresh
 
 ## References
 * [Tabbed login form design](https://t02vt3ludlc288yi5365dsdi-wpengine.netdna-ssl.com/wp-content/uploads/2014/04/tab-login-sign-up-forms.jpg)

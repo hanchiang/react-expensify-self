@@ -19,6 +19,12 @@ const createUser = (email, password) => {
   .catch(error => ({ error }));
 }
 
+const updateUserProfile = (user, updates) => {
+  return user.updateProfile(updates)
+  .then(() => ({}))
+  .catch(error => {error});
+}
+
 const verifyEmail = () => {
   const user = auth.currentUser;
   const actionCodeSettings = { url: 'https://han-expensify.herokuapp.com' };
@@ -35,4 +41,12 @@ const sendPasswordResetEmail = (email) => {
   .catch(error => ({error}));
 };
 
-export { createUser, verifyEmail, sendPasswordResetEmail, signInWithPopup, signInWithEmailAndPassword };
+const linkAuthProvider = (provider) => {
+  return auth.currentUser.linkWithPopup(provider)
+  .then(user => ({user}))
+  .catch(error => ({error}));
+}
+
+export { createUser, verifyEmail, updateUserProfile,
+  sendPasswordResetEmail, signInWithPopup, signInWithEmailAndPassword, linkAuthProvider
+};

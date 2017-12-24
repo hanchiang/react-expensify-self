@@ -46,6 +46,25 @@
   @extend .signup-text-input;
 }
 
+.signup-names {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  .signup-text-input {
+    margin-bottom: $s-size;
+  }
+
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    justify-content: space-between;
+    .signup-text-input {
+      width: 48%;
+    }
+  }
+}
+
+// forgot password form inputs
 .forgot-text-input {
   @extend .login-text-input;
 }
+

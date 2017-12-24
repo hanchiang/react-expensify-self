@@ -21,21 +21,31 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
 
-.header-greetings {
-  color: white;
+  .link-account {
+    justify-content: flex-end;
+    button {
+      font-size: $font-size-small;
+      padding: 9px 8px;
+    }
+  }
+
+  .header-greetings {
+  color: white;  
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 12px;
 
-  .profile-pic {
-    max-width: 100%;
-    max-height: 100%;
-    margin-right: $s-size;
-  }
-  
-  .greeting-text {
-    font-size: $font-size-small;
+    .profile-pic {
+      max-width: 100%;
+      max-height: 100%;
+      margin-right: $s-size;
+    }
+    
+    .greeting-text {
+      font-size: $font-size-small;
+    }
   }
 }
+

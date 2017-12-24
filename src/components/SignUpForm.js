@@ -10,9 +10,8 @@ class MyForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     const { createUserError, setSubmitting, setErrors } = nextProps;
-    if (this.props.createUserError === undefined && createUserError) {
+    if (!this.props.createUserError && createUserError) {
       setSubmitting(false);
       setErrors({email: createUserError});
     }
@@ -21,14 +20,19 @@ class MyForm extends React.Component {
   render() {
     const { errors, isSubmitting, setSubmitting, touched } = this.props;
     const textFieldClass = touched.email && errors.email ?
-      'text-input signup-text-input error' : 'text-input signup-text-input';
+      'signup-text-input error' : 'signup-text-input';
     const passwordFieldClass = touched.password && errors.password ?
-      'password signup-password error' : 'password signup-password';
+      'signup-password error' : 'signup-password';
     const passwordConfirmFieldClass = touched.confirmPassword && errors.confirmPassword
-      ? 'password signup-password error' : 'password signup-password';    
+      ? 'signup-password error' : 'signup-password';    
 
     return (
       <Form className="signup-form">
+        <div className="signup-names">
+          <Field className="signup-text-input" type="text" name="firstName" placeholder="First name" />
+          <Field className="signup-text-input" type="text" name="lastName" placeholder="Last name" />
+        </div>
+        
         {touched.email && errors.email && <p className="signup-error">{errors.email}</p>}
         {/* {createUserError && <p className="signup-error">{createUserError}</p>} */}
         <Field className={textFieldClass} type="text" name="email" placeholder="Email" />
@@ -56,7 +60,9 @@ function SignUpForm(props) {
   const initialValues = {
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    firstName: '',
+    lastName: ''
   };
   const { createUserError } = props;
 
@@ -69,8 +75,9 @@ function SignUpForm(props) {
         password: 'Passwords do not match',
         confirmPassword: 'Passwords do not match'
       });
+      setSubmitting(false);
     } else {
-      props.onSubmit(values.email, values.password);
+      props.onSubmit(values);
     }
   }
 

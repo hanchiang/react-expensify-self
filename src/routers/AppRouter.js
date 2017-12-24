@@ -6,7 +6,7 @@ import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
 import NotFoundPage from '../components/NotFoundPage';
-import LoginPage from '../components/LoginPage';
+import LoginPageTab from '../components/LoginPageTab';
 import SignUpPage from '../components/SignUpPage';
 import ForgotPasswordPage from '../components/ForgotPasswordPage';
 
@@ -24,7 +24,7 @@ function AppRouter() {
                     <PublicRoute path="/" component={LoginPage} exact/>
                     <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                     */}
-                    <PublicRoute path="/" component={LoginPage} exact/>
+                    <PublicRoute path="/" component={LoginPageTab} exact/>
                     <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                     <PrivateRoute path="/create" component={AddExpensePage} />
                     <PrivateRoute path="/edit/:id" component={EditExpensePage} />

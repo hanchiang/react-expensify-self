@@ -1,8 +1,8 @@
 import firebase, { googleAuthProvider } from '../firebase/firebase';
 import {
-  LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGIN_ERROR, AUTH_LOGOUT,
-  CREATE_USER, CREATE_USER_ERROR, REMOVE_CREATE_USER_ERROR,
-  SEND_PASSWORD_RESET, SEND_PASSWORD_RESET_ERROR
+  LOGIN, LOGOUT, AUTH_LOGIN, AUTH_LOGOUT, SET_AUTH_LOGIN_ERROR, SET_AUTH_USER_PROFILE,
+  START_LINK_AUTH_PROVIDER, START_CREATE_USER, SET_CREATE_USER_ERROR,
+  START_SEND_PASSWORD_RESET, SET_SEND_PASSWORD_RESET_ERROR, SET_SEND_PASSWORD_RESET_SUCCESS
 } from '../constants/actionTypes';
 
 const login = (uid) => ({
@@ -14,47 +14,60 @@ const logout = () => ({
   type: LOGOUT
 });
 
+// Async actions
+// payload: { type: 'google' || 'password' || 'facebook'}
 const startLogin = (payload) => ({
   type: AUTH_LOGIN,
   payload
-});
-
-const startLoginError = (error) => ({
-  type: AUTH_LOGIN_ERROR,
-  loginError: error
 });
 
 const startLogout = () => ({
   type: AUTH_LOGOUT
 });
 
-const createUser = (email, password) => ({
-  type: CREATE_USER,
-  email,
-  password
+const startLinkAuthProvider = (provider) => ({
+  type: START_LINK_AUTH_PROVIDER,
+  provider
 });
 
-const createUserError = (error) => ({
-  type: CREATE_USER_ERROR,
-  createUserError: error
+const startCreateUser = (user) => ({
+  type: START_CREATE_USER,
+  user
 });
 
-const removeCreateUserError = () => ({
-  type: REMOVE_CREATE_USER_ERROR
-});
-
-const sendPasswordReset = (email) => ({
-  type: SEND_PASSWORD_RESET,
+const startSendPasswordReset = (email) => ({
+  type: START_SEND_PASSWORD_RESET,
   email
 });
 
-const sendPasswordResetError = (error) => ({
-  type: SEND_PASSWORD_RESET_ERROR,
+// setter actions
+const setLoginError = (error) => ({
+  type: SET_AUTH_LOGIN_ERROR,
+  loginError: error
+});
+
+const setCreateUserError = (error) => ({
+  type: SET_CREATE_USER_ERROR,
+  createUserError: error
+});
+
+const setSendPasswordResetError = (error) => ({
+  type: SET_SEND_PASSWORD_RESET_ERROR,
   sendPasswordResetError: error
 });
 
+const setSendPasswordResetSuccess = (isSuccess) => ({
+  type: SET_SEND_PASSWORD_RESET_SUCCESS,
+  sendPasswordResetSuccess: isSuccess
+});
+
+const setAuthUserProfile = (user) => ({
+  type: SET_AUTH_USER_PROFILE,
+  user
+});
+
 export {
-  login, startLogin, startLoginError, logout, startLogout, 
-  createUser, createUserError, removeCreateUserError,
-  sendPasswordReset, sendPasswordResetError 
+  login, logout, startLinkAuthProvider,
+  startLogin, startLogout, startCreateUser, startSendPasswordReset,
+  setCreateUserError, setLoginError, setSendPasswordResetError, setAuthUserProfile, setSendPasswordResetSuccess
 };

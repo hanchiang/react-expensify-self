@@ -8,22 +8,39 @@ class MyForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { sendPasswordResetError, setErrors, setSubmitting } = nextProps;
-    if (this.props.sendPasswordResetError === undefined && sendPasswordResetError) {
+    const { 
+      sendPasswordResetError, sendPasswordResetSuccess, 
+      setErrors, setSubmitting, values, setStatus 
+    } = nextProps;
+    
+    // console.log(nextProps.values);
+    if (!this.props.sendPasswordResetError && sendPasswordResetError) {
       setErrors({ email: sendPasswordResetError});
       setSubmitting(false);
+    } else {
+      // setvalues({ sendPasswordResetSuccess: successMessage});
     }
   }
 
   render() {
-    const { errors, isSubmitting, touched } = this.props;
+    const { errors, isSubmitting, touched, sendPasswordResetSuccess } = this.props;
     const textFieldClass = touched.email && errors.email ? 'forgot-text-input error' : 'forgot-text-input';
+    const successMessage = 'Instructions to reset your password has been sent to your email.'
+    const successClass = sendPasswordResetSuccess ? 'reset-success reset-success-active' : 'reset-success';
 
     return (
       <Form className="forgot-form">
         <h1 className="forgot-form-title">Reset password</h1>
 
         {touched.email && errors.email && <p className="forgot-error">{errors.email}</p>}
+
+        {sendPasswordResetSuccess &&
+          <div className="reset-success">
+            <h3 className="reset-success-title">Success!</h3>
+            <p className="reset-success-message">{successMessage}</p>
+          </div>
+        }
+          
         <Field className={textFieldClass} type="text" name="email" placeholder="Email" />
 
         <button className="button reset-password-button"
@@ -41,9 +58,10 @@ function ForgotPasswordForm(props) {
     email: Yup.string().email('Email is not valid').required('Email is required')
   });
   const initialValues = {
-    email: ''
+    email: '',
+    sendPasswordResetSuccess: ''
   };
-  const { sendPasswordResetError } = props;
+  const { sendPasswordResetError, sendPasswordResetSuccess } = props;
 
   const onSubmit = (values, actions) => {
     const { setSubmitting, resetForm, setErrors } = actions;
@@ -58,7 +76,10 @@ function ForgotPasswordForm(props) {
         validationSchema={validationSchema}
         initialValues={initialValues}
         render={props =>
-          <MyForm {...props} sendPasswordResetError={sendPasswordResetError} />}
+          <MyForm {...props} 
+            sendPasswordResetError={sendPasswordResetError}
+            sendPasswordResetSuccess={sendPasswordResetSuccess}
+          />}
       />
     </div>
   );
