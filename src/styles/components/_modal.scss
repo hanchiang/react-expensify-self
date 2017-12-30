@@ -4,8 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: $s-size;
 }
 
+// For delete expense modal
 .ReactModal__Overlay.ReactModal__Overlay--after-open {
   opacity: 1;
 
@@ -22,39 +24,42 @@
     > * {
       padding: $m-size;
     }
-
     &:focus {
       outline: none;
     }
-
    .modal-header {
      border-bottom: 1px solid lighten($grey, 50%);
      .modal-title {
       margin: 0;
     }
-   }    
-
-   .modal-body {
-     background: #F2DEDE;
-     margin: $s-size $m-size;
-     .modal-message {
-       margin: 0;
-       color: darken(#F2DEDE, 50%);
-     }
-   }
-
-   .modal-actions {
-     border-top: 1px solid lighten($grey, 50%);
-     display: flex;
-     justify-content: flex-end;
-     
-     .button:first-child {
-       margin-right: $s-size;
-     }
-   }
   }
+
+  .modal-body {
+    background: #F2DEDE;
+    margin: $s-size $m-size;
+    .modal-message {
+      margin: 0;
+      color: darken(#F2DEDE, 50%);
+    }
+  }
+
+  .modal-actions {
+    border-top: 1px solid lighten($grey, 50%);
+    display: flex;
+    justify-content: flex-end;
+     
+    .button:first-child {
+      margin-right: $s-size;
+    }
+  }
+ }
 }
 
 .ReactModal__Overlay.ReactModal__Overlay--before-close {
   opacity: 0;
+}
+
+// For link email modal
+.link-email-modal {
+  @extend .modal;
 }

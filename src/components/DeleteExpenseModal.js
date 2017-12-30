@@ -7,7 +7,6 @@ function DeleteExpenseModal(props) {
   const handleConfirmDelete = (event) => props.onModalConfirm(true);
   const handleRejectDelete = (event) => props.onModalConfirm(false);
 
-
   return (
     <Modal
       isOpen={props.showModal}

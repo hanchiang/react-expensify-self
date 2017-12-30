@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { auth, googleAuthProvider } from '../firebase/firebase';
 
-import { startLogout, startLinkAuthProvider } from '../actions/auth';
+import { startLogout } from '../actions/auth';
+import BurgerMenu from './BurgerMenu';
 
-export function Header(props) {
+function Header(props) {
   const { displayName, photoURL } = props;
-
-  const onGoogleLink = (event) => props.startLinkAuthProvider(googleAuthProvider);
-
   return (
     <header className="header">
       <div className="content-container">
@@ -19,10 +16,6 @@ export function Header(props) {
           </Link>
 
           <div className="header-secondary">
-            <div className="link-account">
-              <button onClick={onGoogleLink} type="button" className="button">Link with Google</button>
-            </div>
-
             <div className="header-greetings">
               {photoURL && <img className="profile-pic" src={photoURL} alt="Profile picture" height="42" />}
               {displayName && <span className="show-for-desktop greeting-text">Hello {displayName}!</span>}
@@ -32,19 +25,27 @@ export function Header(props) {
           </div>
         </div>
       </div>
+
+      <BurgerMenu />
     </header>
   );
 }
 
-const mapStateToProps = (state) => ({
-  displayName: state.auth.user && state.auth.user.displayName,
-  photoURL: state.auth.user && state.auth.user.photoURL,
-  state
-});
+
+const mapStateToProps = (state) => {
+  const signInProvider = state.auth.signInProvider;
+  const providerDataLength = state.auth.user && state.auth.user.providerData.length;
+  
+  return providerDataLength > 0 ? {
+    displayName: state.auth.user.providerData[providerDataLength - 1].displayName,
+    photoURL: state.auth.user.providerData[providerDataLength - 1].photoURL
+  } :
+  {displayName: '', photoURL: ''}
+};
+
 
 const mapDispatchToProps = (dispatch) => ({
-  startLogout: () => dispatch(startLogout()),
-  startLinkAuthProvider: (payload) => dispatch(startLinkAuthProvider(payload))
+  startLogout: () => dispatch(startLogout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

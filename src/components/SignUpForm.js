@@ -11,6 +11,7 @@ class MyForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { createUserError, setSubmitting, setErrors } = nextProps;
+    // async error from firebase
     if (!this.props.createUserError && createUserError) {
       setSubmitting(false);
       setErrors({email: createUserError});

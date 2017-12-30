@@ -73,7 +73,7 @@
 .reset-success {
   background-color: $green-success-background;
   padding: 8px 12px;
-  animation: fade 0.75s ease-in-out;
+  animation: fade 1s ease-in-out;
 
   .reset-success-message {
     color: $green-success-text;
@@ -81,6 +81,60 @@
   }
 
   .reset-success-title {
+    line-height: 1;
+    margin: 0;
+    text-align: center;
+    color: $green-success-text;
+    font-weight: bold;
+  }
+}
+
+
+// link email form
+.link-email-form {
+  @extend .signup-form;
+
+  .link-email-header {
+    margin-bottom: 8px;
+    .link-email-title {
+      border-bottom: 1px solid lighten($grey, 50%);
+      margin: 0;
+    }
+  }
+
+  .link-email-actions {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      flex-basis: 45%;
+    }
+  }
+}
+
+.link-email-error {
+  @extend .signup-error;
+}
+
+.link-email-name-error-wrap {
+  height: 18px;
+  .link-email-name-error {
+    @extend .signup-error;
+    line-height: 1; // 16px
+    margin-bottom: 2px;
+  }
+}
+
+.link-email-success {
+  @extend .reset-success;
+  padding: 12px;
+
+  .link-email-success-message {
+    color: $green-success-text;
+    margin: 5px;
+  }
+
+  .link-email-success-title {
     line-height: 1;
     margin: 0;
     text-align: center;

@@ -8,7 +8,6 @@ export function PrivateRoute(props) {
   const { isAuthenticated, component: Component, ...rest } = props;
   return (
     <Route  {...rest} component={(props) => {
-      console.log(isAuthenticated);
       return isAuthenticated ? (
         <div>
           <Header />

@@ -33,6 +33,17 @@
   }
 }
 
+.facebook-button {
+  @extend .button;
+  background-color: $blue-facebook;
+  border: 1px solid darken($blue-facebook, 5%);
+
+  &:hover {
+    background-color: darken($blue-facebook, 10%);
+    border: 1px solid darken($blue-facebook, 15%);
+  }
+}
+
 .button-normal {
   background-color: white;
   border: 1px solid rgba(50, 50, 50, 0.2);
@@ -104,4 +115,14 @@
 
 .reset-password-button {
   @extend .signup-button;
+}
+
+.link-email-button {
+  @extend .signup-button;
+
+  &.link-email-button-close {
+    background: white;
+    color: $grey;
+    border: 1px solid rgba(50, 50, 50, 0.2);
+  }
 }

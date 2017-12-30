@@ -1,11 +1,14 @@
 import { all, takeEvery } from 'redux-saga/effects';
 
 import { 
-  AUTH_LOGIN, AUTH_LOGOUT, START_LINK_AUTH_PROVIDER,
+  AUTH_LOGIN, AUTH_LOGOUT, START_LINK_AUTH_PROVIDER, START_LINK_EMAIL_AUTH_PROVIDER, START_UNLINK_AUTH_PROVIDER,
   START_ADD_EXPENSE, START_SET_EXPENSE, START_EDIT_EXPENSE, START_REMOVE_EXPENSE,
   START_CREATE_USER, START_SEND_PASSWORD_RESET
 } from '../constants/actionTypes';
-import { handleLogin, handleLogout, handleCreateUser, handleSendPasswordReset, handleLinkAuthProvider } from './auth';
+import { 
+  handleLogin, handleLogout, handleCreateUser, handleLinkEmailAuthProvider,
+  handleSendPasswordReset, handleLinkAuthProvider, handleUnlinkAuthProvider
+} from './auth';
 import { handleAddExpense, handleSetExpense, handleEditExpense, handleRemoveExpense } from './expenses';
 
 // Root saga
@@ -19,7 +22,9 @@ function* watchAll() {
     takeEvery(START_REMOVE_EXPENSE, handleRemoveExpense),
     takeEvery(START_CREATE_USER, handleCreateUser),
     takeEvery(START_SEND_PASSWORD_RESET, handleSendPasswordReset),
-    takeEvery(START_LINK_AUTH_PROVIDER, handleLinkAuthProvider)
+    takeEvery(START_LINK_AUTH_PROVIDER, handleLinkAuthProvider),
+    takeEvery(START_UNLINK_AUTH_PROVIDER, handleUnlinkAuthProvider),
+    takeEvery(START_LINK_EMAIL_AUTH_PROVIDER, handleLinkEmailAuthProvider)
   ]);
 }
 

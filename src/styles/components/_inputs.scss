@@ -68,3 +68,26 @@
   @extend .login-text-input;
 }
 
+// link email form inputs
+.link-email-names {
+  display: flex;
+  .link-email-name {
+    &:first-child {
+      margin-right: 10px;
+    }
+
+    .link-email-name-input {
+      @extend .login-text-input;
+      width: 100%;
+    }
+  }
+}
+
+.link-email-text-input {
+  @extend .signup-text-input;
+}
+
+
+.link-email-password {
+  @extend .link-email-text-input;
+}

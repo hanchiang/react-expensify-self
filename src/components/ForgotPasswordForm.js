@@ -15,6 +15,7 @@ class MyForm extends React.Component {
     
     // console.log(nextProps.values);
     if (!this.props.sendPasswordResetError && sendPasswordResetError) {
+      // async error from firebase
       setErrors({ email: sendPasswordResetError});
       setSubmitting(false);
     } else {
@@ -25,8 +26,7 @@ class MyForm extends React.Component {
   render() {
     const { errors, isSubmitting, touched, sendPasswordResetSuccess } = this.props;
     const textFieldClass = touched.email && errors.email ? 'forgot-text-input error' : 'forgot-text-input';
-    const successMessage = 'Instructions to reset your password has been sent to your email.'
-    const successClass = sendPasswordResetSuccess ? 'reset-success reset-success-active' : 'reset-success';
+    const successMessage = 'Instructions to reset your password has been sent to your email. Redirecting to login...'
 
     return (
       <Form className="forgot-form">

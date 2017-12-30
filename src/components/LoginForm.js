@@ -31,18 +31,23 @@ class LoginForm extends React.Component {
     const textInputClass = loginError ? 'login-text-input error' : 'login-text-input';
 
     return (
-      <form className="login-form" onSubmit={this.onSubmit}>
-        {loginError && <p className="login-error">{loginError}</p>}
-        <input type="text" name="email" className={textInputClass} placeholder="Email"
-          value={this.state.email} onChange={this.onEmailChange}
-        />
-        <input type="password" className="login-password" placeholder="Password"
-          value={this.state.password} onChange={this.onPasswordChange}
-        />
-        <div className="login-button-layout">
-          <button className="button login-button">Login</button>
-        </div>
-      </form>
+      <div className="login-form">
+        <button onClick={this.props.googleLogin} className="google-button" type="button">Login with Google</button>
+        <button onClick={this.props.facebookLogin} className="facebook-button" type="button">Login with Facebook</button>
+
+        <form className="form" onSubmit={this.onSubmit}>
+          {loginError && <p className="login-error">{loginError}</p>}
+          <input type="text" name="email" className={textInputClass} placeholder="Email"
+            value={this.state.email} onChange={this.onEmailChange}
+          />
+          <input type="password" className="login-password" placeholder="Password"
+            value={this.state.password} onChange={this.onPasswordChange}
+          />
+          <div className="login-button-layout">
+            <button className="button login-button">Login</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

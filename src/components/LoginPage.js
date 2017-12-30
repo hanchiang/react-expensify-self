@@ -9,6 +9,7 @@ function LoginPage(props) {
     <LoginForm
       passwordLogin={props.passwordLogin}
       googleLogin={props.googleLogin}
+      facebookLogin={props.facebookLogin}
       loginError={props.loginError}
     />
   );
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   googleLogin: () => dispatch(startLogin({ type: 'google' })),
+  facebookLogin: () => dispatch(startLogin({ type: 'facebook'})),
   passwordLogin: (email, password) => dispatch(startLogin({ type: 'password', email, password }))
 });
 

@@ -9,6 +9,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import LoginPageTab from '../components/LoginPageTab';
 import SignUpPage from '../components/SignUpPage';
 import ForgotPasswordPage from '../components/ForgotPasswordPage';
+import ProfilePage from '../components/ProfilePage';
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -25,11 +26,12 @@ function AppRouter() {
                     <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                     */}
                     <PublicRoute path="/" component={LoginPageTab} exact/>
+                    <PublicRoute path="/signup" component={SignUpPage} />
+                    <PublicRoute path="/forgot" component={ForgotPasswordPage} />
                     <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                     <PrivateRoute path="/create" component={AddExpensePage} />
                     <PrivateRoute path="/edit/:id" component={EditExpensePage} />
-                    <PublicRoute path="/signup" component={SignUpPage} />
-                    <PublicRoute path="/forgot" component={ForgotPasswordPage} />
+                    <PrivateRoute path="/profile" component={ProfilePage} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </div>
