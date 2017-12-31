@@ -20,6 +20,37 @@
 .login-form {
   @extend .form;
   margin: 0 auto;
+
+  .login-form-providers {
+    display: flex;
+
+    button {
+      flex-basis: 48%;
+      font-size: 16px;
+      padding: 0;
+    }
+    .google-button {
+      margin-right: 10px;
+    }
+
+    @media (max-width: $desktop-breakpoint) {
+      flex-direction: column;
+      
+      button {
+        flex-basis: 100%;
+      }
+      .google-button {
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+
+  .or {
+    margin: 0;
+    line-height: 1;
+    font-size: 1.1em;
+    font-style: italic;
+  }
 }
 
 .login-error {

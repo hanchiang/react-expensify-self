@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { startLogout } from '../actions/auth';
 import BurgerMenu from './BurgerMenu';
 
 function Header(props) {
@@ -17,12 +16,11 @@ function Header(props) {
 
           <div className="header-secondary">
             <div className="header-greetings">
-              {photoURL && <img className="profile-pic" src={photoURL} alt="Profile picture" height="42" />}
+              {photoURL && <img className="profile-pic show-for-desktop" src={photoURL} alt="Profile picture" height="42" />}
               {displayName && <span className="show-for-desktop greeting-text">Hello {displayName}!</span>}
-            </div>
-
-            <button className="button button-link logout-button" onClick={props.startLogout}>Logout</button>
+            </div>         
           </div>
+
         </div>
       </div>
 
@@ -44,8 +42,4 @@ const mapStateToProps = (state) => {
 };
 
 
-const mapDispatchToProps = (dispatch) => ({
-  startLogout: () => dispatch(startLogout())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

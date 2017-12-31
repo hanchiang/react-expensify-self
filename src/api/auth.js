@@ -104,14 +104,8 @@ const unlinkAuthProvider = (providerId) => {
 
 const reauthenticateWithPopup = (signInProvider) => {
   return auth.currentUser.reauthenticateWithPopup(AUTH_PROVIDERS[signInProvider])
-  .then(userCredential => {
-    console.log(userCredential);
-    return { userCredential };
-  })
-  .catch(error => {
-    console.log(error);
-    return {error};
-  });
+  .then(userCredential => ({userCredential}))
+  .catch(error => ({error}));
 }
 
 export {

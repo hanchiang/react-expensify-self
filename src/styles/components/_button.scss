@@ -88,14 +88,14 @@
 }
 
 .logout-button {
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease-in-out;
+  padding-left: 0;
   border: none;
+  transition: color 0.2s ease-in-out;
   
   &:hover {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
     background-color: transparent;
     border: none;
+    color: #ddd;
   }
 }
 
