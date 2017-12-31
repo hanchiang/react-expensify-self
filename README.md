@@ -1,5 +1,5 @@
-
-This project is created using the react boilerplate by [Andrew Mead](https://github.com/andrewjmead)
+This is an expense manager application that allows you to login via email, facebook, or google,  
+and manage your own expenses.
 
 ## Design decisions
 * Creation time for expenses is stored in milliseconds  
@@ -41,3 +41,5 @@ This project is created using the react boilerplate by [Andrew Mead](https://git
 * Organise components into their own folders  
 * Look at nested routes.(not so important?)  
 
+
+This project is created using the react boilerplate by [Andrew Mead](https://github.com/andrewjmead)
