@@ -10,10 +10,7 @@ test('should return addExpense action object', () => {
   };
   const expectedAction = {
     type: ADD_EXPENSE,
-    expense: {
-      ...expense,
-      id: expect.any(String)
-    }
+    expense
   };
   expect(addExpense(expense)).toEqual(expectedAction)
 });

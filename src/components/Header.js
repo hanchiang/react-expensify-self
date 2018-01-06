@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import BurgerMenu from './BurgerMenu';
 
-function Header(props) {
+export function Header(props) {
   const { displayName, photoURL } = props;
   return (
     <header className="header">

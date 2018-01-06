@@ -1,7 +1,7 @@
 {
   "name": "Boiler-react-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "author": "han",
   "license": "MIT",
   "scripts": {
@@ -9,6 +9,7 @@
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
+    "test-watch": "cross-env NODE_ENV=test jest --watch --config=jest.config.json",
     "start": "node server/server.js",
     "heroku-postbuild": "yarn run build:prod"
   },

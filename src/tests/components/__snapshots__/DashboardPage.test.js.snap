@@ -2,6 +2,28 @@
 
 exports[`should render DashboardPage 1`] = `
 <div>
-  Dashbaord page content
+  <div
+    className="page-header"
+  >
+    <div
+      className="content-container"
+    >
+      <Connect(ExpensesSummary) />
+      <NavLink
+        activeClassName="active"
+        ariaCurrent="true"
+        className="button page-header-actions"
+        to="/create"
+      >
+        Add Expense
+      </NavLink>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <Connect(ExpenseListFilters) />
+    <Connect(ExpenseList) />
+  </div>
 </div>
 `;

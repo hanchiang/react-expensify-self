@@ -8,23 +8,26 @@ exports[`should render header correctly 1`] = `
     className="content-container"
   >
     <div
-      className="header__content"
+      className="header-content"
     >
       <Link
-        className="header__title"
+        className="header-title"
         replace={false}
         to="/dashboard"
       >
         <h1>
-          Boilerplate
+          Expensify
         </h1>
       </Link>
-      <button
-        className="button button--link"
+      <div
+        className="header-secondary"
       >
-        Logout
-      </button>
+        <div
+          className="header-greetings"
+        />
+      </div>
     </div>
   </div>
+  <Connect(BurgerMenu) />
 </header>
 `;

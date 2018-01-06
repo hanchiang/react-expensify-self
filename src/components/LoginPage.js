@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { startLogin } from '../actions/auth';
 import LoginForm from './LoginForm';
 
-function LoginPage(props) {
+export function LoginPage(props) {
   return (
     <LoginForm
       passwordLogin={props.passwordLogin}

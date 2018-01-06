@@ -5,7 +5,7 @@ import ExpenseList from './ExpenseList';
 import ExpenseListFilters from './ExpenseListFilters';
 import ExpensesSummary from './ExpensesSummary';
 
-function ExpenseDashboardPage() {
+export function ExpenseDashboardPage() {
     return (
         <div>
             <div className="page-header">
