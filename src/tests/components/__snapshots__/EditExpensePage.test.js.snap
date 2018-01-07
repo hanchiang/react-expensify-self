@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditExpensePage should render EditExpensePage 1`] = `
+<div
+  id="edit-expense-page"
+>
+  <div
+    className="page-header"
+  >
+    <div
+      className="content-container"
+    >
+      <h1
+        className="page-header-title"
+      >
+        Edit Expense
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <ExpenseForm
+      isEdit={true}
+      onRemove={[Function]}
+      onSubmit={[Function]}
+    />
+  </div>
+  <DeleteExpenseModal
+    onModalClose={[Function]}
+    onModalConfirm={[Function]}
+    showModal={false}
+  />
+</div>
+`;

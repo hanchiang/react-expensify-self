@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BurgerMenu should render BurgerMenu 1`] = `
+<Menu
+  bodyClassName=""
+  burgerBarClassName=""
+  burgerButtonClassName=""
+  className=""
+  crossButtonClassName=""
+  crossClassName=""
+  id=""
+  isOpen={false}
+  itemListClassName=""
+  menuClassName=""
+  morphShapeClassName=""
+  noOverlay={false}
+  onStateChange={[Function]}
+  outerContainerId=""
+  overlayClassName=""
+  pageWrapId=""
+  right={true}
+  styles={Object {}}
+  width={300}
+>
+  <Link
+    replace={false}
+    to="/profile"
+  >
+    Profile
+  </Link>
+  <button
+    className="button button-link logout-button"
+  >
+    Logout
+  </button>
+</Menu>
+`;

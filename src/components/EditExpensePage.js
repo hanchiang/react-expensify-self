@@ -5,7 +5,7 @@ import ExpenseForm from './ExpenseForm';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 import DeleteExpenseModal from './DeleteExpenseModal';
 
-class EditExpensePage extends React.Component {
+export class EditExpensePage extends React.Component {
   constructor(props) {
     super(props);
 

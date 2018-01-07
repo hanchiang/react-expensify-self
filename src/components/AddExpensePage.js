@@ -5,7 +5,7 @@ import ExpenseForm from './ExpenseForm';
 import { startAddExpense } from '../actions/expenses';
 import moment from 'moment';
 
-function AddExpensePage(props) {
+export function AddExpensePage(props) {
   const onSubmit = (expense) => {
     props.onSubmit(expense);
     props.history.push('/dashboard');

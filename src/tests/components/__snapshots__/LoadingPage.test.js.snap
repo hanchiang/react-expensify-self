@@ -6,7 +6,7 @@ exports[`should render LoadingPage 1`] = `
 >
   <img
     alt="Spinning circle"
-    className="loader__image"
+    className="loader-image"
     src="/images/loader.gif"
   />
 </div>

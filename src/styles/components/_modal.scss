@@ -19,7 +19,13 @@
     border: 1px solid rgba(0,0,0,0.2);
     border-radius: 3px;
     background: white;
-    width: 40rem;
+    width: 38rem;
+
+    @media (max-width: $desktop-breakpoint) {
+      .modal {
+        width: auto;
+      }
+    }
 
     > * {
       padding: $m-size;
@@ -62,4 +68,5 @@
 // For link email modal
 .link-email-modal {
   @extend .modal;
+  margin: 0 10px;
 }

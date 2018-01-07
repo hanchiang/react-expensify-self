@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { startLogout } from '../actions/auth';
 
-class BurgerMenu extends React.Component {
+export class BurgerMenu extends React.Component {
   constructor(props) {
     super(props);
 
@@ -22,7 +22,7 @@ class BurgerMenu extends React.Component {
     return (
       <Menu right isOpen={this.state.isOpen} onStateChange={this.isMenuOpen}>
           <Link to="/profile">Profile</Link>
-          <button className="button button-link logout-button" onClick={this.props.startLogout}>Logout</button>
+          <button className="button button-link logout-button" type="button" onClick={this.props.startLogout}>Logout</button>
       </Menu>
     );
   }

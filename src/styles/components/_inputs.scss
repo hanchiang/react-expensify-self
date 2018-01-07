@@ -49,9 +49,11 @@
 .signup-names {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
   .signup-text-input {
-    margin-bottom: $s-size;
+    margin-bottom: 12px;
+  }
+  .signup-text-input:last-child {
+    margin-bottom: 0;
   }
 
   @media (min-width: $desktop-breakpoint) {
@@ -59,6 +61,7 @@
     justify-content: space-between;
     .signup-text-input {
       width: 48%;
+      margin: 0;
     }
   }
 }
@@ -71,7 +74,17 @@
 // link email form inputs
 .link-email-names {
   display: flex;
+
   .link-email-name {
+    .link-email-name-error-wrap {
+      height: 18px;
+      .link-email-name-error {
+        @extend .signup-error;
+        line-height: 1; // 16px
+        margin-bottom: 2px;
+      }
+    }
+
     &:first-child {
       margin-right: 10px;
     }
@@ -81,7 +94,16 @@
       width: 100%;
     }
   }
+  
+  @media(max-width: $desktop-breakpoint) {
+    flex-direction: column;
+
+    .link-email-name:first-child {
+      margin: 0;
+    }
+  }
 }
+
 
 .link-email-text-input {
   @extend .signup-text-input;

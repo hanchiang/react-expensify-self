@@ -1,7 +1,12 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#app');
+// Modal throws an error during test. Most probably because it is unable to find the 
+// #app element in index.html
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#app');
+}
+
 
 function DeleteExpenseModal(props) {
   const handleConfirmDelete = (event) => props.onModalConfirm(true);

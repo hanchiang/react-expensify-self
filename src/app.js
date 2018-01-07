@@ -45,10 +45,11 @@ export const jsx = (
 
 
 // renderApp();
-
+/*
 if (module.hot) {
   module.hot.accept('./app', () => { renderApp() })
 }
+*/
 
 // Will run when a user first visits the web page and when page refresh
 auth.onAuthStateChanged((user) => {

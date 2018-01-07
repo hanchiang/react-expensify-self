@@ -124,6 +124,7 @@
 // link email form
 .link-email-form {
   @extend .signup-form;
+  margin: 0;
 
   .link-email-header {
     margin-bottom: 8px;
@@ -147,14 +148,6 @@
   @extend .signup-error;
 }
 
-.link-email-name-error-wrap {
-  height: 18px;
-  .link-email-name-error {
-    @extend .signup-error;
-    line-height: 1; // 16px
-    margin-bottom: 2px;
-  }
-}
 
 .link-email-success {
   @extend .reset-success;
