@@ -37,9 +37,8 @@ and manage your own expenses.
 
 
 ## TO DO
-* IMPT?: Unset the variables used for async error and success handling after success
 * Organise components into their own folders  
-* Look at nested routes.(not so important?)  
+* Complete test coverage
 
 
 This project is created using the react boilerplate by [Andrew Mead](https://github.com/andrewjmead)

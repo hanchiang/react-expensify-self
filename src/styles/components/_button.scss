@@ -50,6 +50,11 @@
   color: $dark-grey;
   border-radius: 3px;
   padding: $s-size $m-size;
+
+  &:hover {
+    background-color: darken(white, 10%);
+    border: 1px solid darken(white, 15%);
+  }
 }
 
 .button-warning {
@@ -57,10 +62,21 @@
   border: 1px solid darken(#D9534F, 10%);
   border-radius: 3px;
   padding: $s-size $m-size;
+
+  &:hover {
+    background-color: darken(#D9534F, 10%);
+    border: 1px solid darken(#D9534F, 15%);
+  }
 }
 
 .button-remove {
   background: #888;
+  border: 1px solid darken(#888, 5%);
+
+  &:hover {
+    background-color: darken(#888, 10%);
+    border: 1px solid darken(#888, 15%);
+  }
 }
 
 

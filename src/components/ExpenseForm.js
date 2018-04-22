@@ -52,8 +52,8 @@ class ExpenseForm extends React.Component {
     event.preventDefault();
     let error = '';
 
-    if (!this.state.description || !this.state.amount) {
-      error = 'Please enter description and amount';
+    if (!this.state.description || !this.state.amount || !this.state.createdAt) {
+      error = 'Please enter description, amount and date';
       this.setState({error});
     } else {
       this.setState({error});
